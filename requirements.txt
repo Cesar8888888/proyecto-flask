@@ -1,0 +1,3 @@
+Flask
+Flask-Mail
+psycopg2-binary

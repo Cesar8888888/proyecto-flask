@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Desguace Colomi - Catálogo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Inicio</a> | 
+        <a href="/catalogo">Catálogo</a> | 
+        {% if session.get('usuario') %}
+            <span>Hola, {{ session['usuario'] }}</span> | 
+            <a href="/logout" style="color: #e74c3c;">Cerrar Sesión</a>
+        {% else %}
+            <a href="/registro">Registrarse</a> | 
+            <a href="/login">Iniciar Sesión</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h1>Catálogo de Piezas</h1>
+        <p>Listado general de repuestos disponibles en nuestro almacén.</p>
+
+        <div class="gallery">
+    {% for pieza in productos %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/' + pieza.imagen) }}" alt="{{ pieza.nombre }}">
+            
+            <h3>{{ pieza.nombre }}</h3>
+            <p><strong>Categoría:</strong> {{ pieza.categoria }}</p>
+            <p><strong>Precio:</strong> {{ pieza.precio }}</p>
+        </div>
+    {% endfor %}
+</div>
+    </div>
+</body>
+</html>
