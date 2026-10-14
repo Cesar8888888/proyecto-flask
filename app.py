@@ -49,7 +49,7 @@ def init_db():
 init_db()
 
 # -------------------------------------------------------------
-# 2. Configuración de Correo Electrónico (Mailtrap / Gmail)
+# 2. Configuración de Correo Electrónico
 # -------------------------------------------------------------
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
