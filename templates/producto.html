@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Desguace Colomi - Subir producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Inicio</a> | 
+        <a href="/catalogo">Catálogo</a> | 
+        {% if session.get('usuario') %}
+            <a href="/producto">Subir producto</a>
+            <span>Hola, {{ session['usuario'] }}</span> | 
+            <a href="/logout" style="color: #e74c3c;">Cerrar Sesión</a>
+        {% else %}
+            <a href="/registro">Registrarse</a> | 
+            <a href="/login">Iniciar Sesión</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h1>Registro de un producto</h1>
+
+        {% if mensaje %}
+            <p style="color: #16a085; font-weight: bold;">{{ mensaje }}</p>
+        {% endif %}
+
+        <form action="/producto" method="POST" enctype="multipart/form-data">
+            <label for="nombreproducto">Nombre de producto:</label><br>
+            <input type="text" id="nombreproducto" name="nombreproducto" required><br><br>
+
+            <label for="categoria">Categoria:</label><br>
+            <select id="categoria" name="categoria"><br>
+                <option value="iluminacion">Iluminación</option>
+                <option value="carroceria">Carrocería</option>
+                <option value="mecanica">Mecánica</option>
+            </select><br><br>
+            <label for="precio">Precio (con IVA):</label><br>
+            <input type="number" id="precio" name="precio" required><br><br>
+            <label for="imagen">Imagen:</label><br>
+            <input type="file" id="imagen" name="imagen" required><br><br>
+
+            <button type="submit">Registrar producto</button>
+        </form>
+    </div>
+</body>
+</html>
